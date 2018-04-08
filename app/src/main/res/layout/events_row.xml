@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="event"
+            type="com.example.kalpak.football.viewmodels.ViewEvents" />
+
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/events_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:hint="@string/events_today"
+                android:padding="4dp"
+                android:text="@{event.strLeague}"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/color_white"
+                 />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".35"
+                    android:orientation="vertical">
+
+                    <ImageView
+                    android:id="@+id/badge1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                        android:padding="16dp"
+                        android:src="@mipmap/barcelona"
+                    />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Team A"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@{event.strHomeTeam}"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:hint="Date"
+                        android:textColor="@color/color_black"
+                        android:text="@{event.dateEvent}"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:hint="Time"
+                        android:textColor="@color/color_black"
+                        android:text="@{event.strTime}"
+                        android:textAlignment="center" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Time"
+                        android:text="VS"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorLight"
+                        android:textStyle="bold"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".35"
+                    android:orientation="vertical">
+
+                    <ImageView
+                    android:id="@+id/badge2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                        android:padding="16dp"
+                        android:src="@mipmap/realmadrid"
+                     />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Team B"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@{event.strAwayTeam}"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <!--<ImageView-->
+                <!--android:id="@+id/sportsthumb"-->
+                <!--app:sportsthumb="@{sport.strSportThumb}"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_margin="4dp" />-->
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</layout>
