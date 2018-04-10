@@ -39,31 +39,33 @@ import static com.example.kalpak.football.utils.Constants.BASE_URL;
 import static com.example.kalpak.football.utils.Constants.SPORT_LEAGUE;
 
 public class TeamListActivity extends AppCompatActivity {
-ActivityTeamListBinding binding;
-    List<Team> sports=new ArrayList<>();
+    ActivityTeamListBinding binding;
+    List<Team> sports = new ArrayList<>();
     TeamListAdapter sportsAdapter;
     String leagueId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final Intent intent=getIntent();
-        final League league=intent.getParcelableExtra("League_detail");
+        final Intent intent = getIntent();
+        final League league = intent.getParcelableExtra("League_detail");
 
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_team_list);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_team_list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        binding.tcontainer.teamList.setNestedScrollingEnabled(false);
         binding.tcontainer.teamList.setLayoutManager(layoutManager);
-        sportsAdapter=new TeamListAdapter(sports,TeamListActivity.this);
+        sportsAdapter = new TeamListAdapter(sports, TeamListActivity.this);
 
         binding.toolbar.setTitle("Teams");
-        leagueId=league.getIdLeague();
+        leagueId = league.getIdLeague();
         binding.tcontainer.teamList.setAdapter(sportsAdapter);
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent1=new Intent(TeamListActivity.this,LeagueDetailActivity.class);
-              intent1.putExtra("League_detail",league);
-               startActivity(intent1);
+                Intent intent1 = new Intent(TeamListActivity.this, LeagueDetailActivity.class);
+                intent1.putExtra("League_detail", league);
+                startActivity(intent1);
             }
         });
         Glide.with(this)
@@ -75,20 +77,20 @@ ActivityTeamListBinding binding;
     public void response() {
 
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,BASE_URL+ALL_TEAMS+leagueId, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, BASE_URL + ALL_TEAMS + leagueId, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 try {
-                    JSONArray array=response.getJSONArray("teams");
+                    JSONArray array = response.getJSONArray("teams");
 
 
                     Gson gson = new GsonBuilder().create();
 
-                    for(int i=0;i<array.length();i++){
+                    for (int i = 0; i < array.length(); i++) {
 
-                        sports.add(new Team(gson.fromJson(array.getJSONObject(i).toString(),Team.class)));
+                        sports.add(new Team(gson.fromJson(array.getJSONObject(i).toString(), Team.class)));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
