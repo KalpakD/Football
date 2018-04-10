@@ -43,29 +43,31 @@ import static com.example.kalpak.football.utils.Constants.BASE_URL;
 
 public class PlayersListActivity extends AppCompatActivity {
     ActivityPlayersListBinding binding;
-    List<Player> sports=new ArrayList<>();
+    List<Player> sports = new ArrayList<>();
     PlayerListAdapter sportsAdapter;
     String teamId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Intent intent=getIntent();
-        final Team team=intent.getParcelableExtra("team_detail");
+        final Intent intent = getIntent();
+        final Team team = intent.getParcelableExtra("team_detail");
 
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_players_list);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_players_list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        binding.pcontainer.playerList.setNestedScrollingEnabled(false);
         binding.pcontainer.playerList.setLayoutManager(layoutManager);
-        sportsAdapter=new PlayerListAdapter(sports,PlayersListActivity.this);
+        sportsAdapter = new PlayerListAdapter(sports, PlayersListActivity.this);
 
         binding.toolbar.setTitle("Players");
-        teamId=team.getIdTeam();
+        teamId = team.getIdTeam();
         binding.pcontainer.playerList.setAdapter(sportsAdapter);
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent1=new Intent(PlayersListActivity.this,TeamDetailActivity.class);
-               intent1.putExtra("team_detail",team);
-               startActivity(intent1);
+                Intent intent1 = new Intent(PlayersListActivity.this, TeamDetailActivity.class);
+                intent1.putExtra("team_detail", team);
+                startActivity(intent1);
             }
         });
         Glide.with(this)
@@ -77,20 +79,20 @@ public class PlayersListActivity extends AppCompatActivity {
     public void response() {
 
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,BASE_URL+ALL_PLAYERS+teamId, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, BASE_URL + ALL_PLAYERS + teamId, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 try {
-                    JSONArray array=response.getJSONArray("player");
+                    JSONArray array = response.getJSONArray("player");
 
 
                     Gson gson = new GsonBuilder().create();
 
-                    for(int i=0;i<array.length();i++){
+                    for (int i = 0; i < array.length(); i++) {
 
-                        sports.add(new Player(gson.fromJson(array.getJSONObject(i).toString(),Player.class)));
+                        sports.add(new Player(gson.fromJson(array.getJSONObject(i).toString(), Player.class)));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
