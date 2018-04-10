@@ -1,7 +1,11 @@
 package com.example.kalpak.football.models;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.RequiresApi;
+
+import com.example.kalpak.football.utils.DateTime;
 
 public class Events implements Parcelable {
 
@@ -20,6 +24,7 @@ public class Events implements Parcelable {
     String idLeague;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public Events(Events events) {
         this.idEvent = events.getIdEvent();
         this.strEvent = events.getStrEvent();
@@ -126,8 +131,10 @@ public class Events implements Parcelable {
         this.dateEvent = dateEvent;
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public String getStrTime() {
-        return strTime;
+        return  new DateTime().convertTime(strTime);
     }
 
     public void setStrTime(String strTime) {
