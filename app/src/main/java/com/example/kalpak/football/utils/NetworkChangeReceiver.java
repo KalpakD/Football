@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.kalpak.football.activities.MainActivity;
 
 public class NetworkChangeReceiver extends BroadcastReceiver {
     Context mContext;
@@ -24,7 +23,5 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         } else {
             Log.e("Receiver ", "connected to internet");//your code when internet connection come back
         }
-//        MainActivity.addLogText(status);
-
     }
 }

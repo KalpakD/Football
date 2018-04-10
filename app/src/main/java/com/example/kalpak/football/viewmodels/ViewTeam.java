@@ -10,11 +10,10 @@ import com.bumptech.glide.Glide;
 import com.example.kalpak.football.models.Team;
 
 public class ViewTeam extends BaseObservable {
-    Context context;
-    Team team;
+    private Team team;
 
     public ViewTeam(Context context, Team team) {
-        this.context = context;
+        Context context1 = context;
         this.team = team;
     }
 
@@ -57,12 +56,14 @@ public class ViewTeam extends BaseObservable {
     public String getStrStadiumThumb() {
         return team.getStrStadiumThumb();
     }
+
     @BindingAdapter({"fanart"})
     public static void loadfanart(ImageView view, String url) {
         Glide.with(view.getContext())
                 .load(url).centerCrop()
                 .into(view);
     }
+
     @Bindable
     public String getStrTeam() {
         return team.getStrTeam();
@@ -87,12 +88,14 @@ public class ViewTeam extends BaseObservable {
     public String getStrTeamLogo() {
         return team.getStrTeamLogo();
     }
+
     @BindingAdapter({"teamlogo"})
     public static void loadImage(ImageView view, String url) {
         Glide.with(view.getContext())
                 .load(url).centerCrop()
                 .into(view);
     }
+
     @Bindable
     public String getStrManager() {
         return team.getStrManager();

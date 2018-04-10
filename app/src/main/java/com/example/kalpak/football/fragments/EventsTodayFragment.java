@@ -1,7 +1,10 @@
 package com.example.kalpak.football.fragments;
 
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,14 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.kalpak.football.R;
-import com.example.kalpak.football.activities.PlayersListActivity;
-import com.example.kalpak.football.activities.TeamListActivity;
 import com.example.kalpak.football.adapters.EventsAdapter;
 import com.example.kalpak.football.databinding.FragmentEventsTodayBinding;
 import com.example.kalpak.football.models.Events;
-import com.example.kalpak.football.models.Player;
-import com.example.kalpak.football.models.Team;
-import com.example.kalpak.football.models.TeamBadge;
 import com.example.kalpak.football.utils.DateTime;
 import com.example.kalpak.football.utils.MySingleton;
 import com.google.gson.Gson;
@@ -36,8 +34,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.kalpak.football.utils.Constants.ALL_PLAYERS;
-import static com.example.kalpak.football.utils.Constants.ALL_TEAMS;
 import static com.example.kalpak.football.utils.Constants.BASE_URL;
 import static com.example.kalpak.football.utils.Constants.EVENTS_TODAY;
 
@@ -55,7 +51,7 @@ public class EventsTodayFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_events_today, container, false);
@@ -73,9 +69,10 @@ public class EventsTodayFragment extends Fragment {
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, BASE_URL + EVENTS_TODAY + DateTime.getCurrentData() + "&s=Soccer", null, new Response.Listener<JSONObject>() {
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(JSONObject response) {
-                // TODO Auto-generated method stub
+
                 try {
                     JSONArray array = response.getJSONArray("events");
                     Gson gson = new GsonBuilder().create();
@@ -97,7 +94,7 @@ public class EventsTodayFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
+
                 NetworkResponse response = error.networkResponse;
                 Toast.makeText(view.getContext(), "response: Error" +
                         response.statusCode, Toast.LENGTH_SHORT).show();

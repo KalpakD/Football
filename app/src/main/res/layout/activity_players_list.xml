@@ -33,6 +33,7 @@
                     android:layout_height="150dp"
                     android:layout_gravity="top"
                     android:scaleType="fitCenter"
+                    android:src="@mipmap/barcelona"
                     android:scaleX="0.5"
                     android:scaleY="0.5"
                     app:layout_collapseMode="parallax" />

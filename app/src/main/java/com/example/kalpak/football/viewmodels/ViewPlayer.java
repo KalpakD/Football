@@ -10,11 +10,10 @@ import com.bumptech.glide.Glide;
 import com.example.kalpak.football.models.Player;
 
 public class ViewPlayer extends BaseObservable {
-    Context context;
-    Player player;
+    private Player player;
 
     public ViewPlayer(Context context, Player player) {
-        this.context = context;
+        Context context1 = context;
         this.player = player;
     }
 

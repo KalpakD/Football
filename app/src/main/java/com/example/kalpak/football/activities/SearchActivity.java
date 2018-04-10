@@ -15,11 +15,14 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.kalpak.football.adapters.PlayerListAdapter;
 import com.example.kalpak.football.adapters.TeamListAdapter;
 import com.example.kalpak.football.databinding.ActivitySearchBinding;
 
 import com.example.kalpak.football.R;
+import com.example.kalpak.football.models.Player;
 import com.example.kalpak.football.models.Team;
+import com.example.kalpak.football.utils.Constants;
 import com.example.kalpak.football.utils.MySingleton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,17 +36,26 @@ import java.util.List;
 
 import static com.example.kalpak.football.utils.Constants.BASE_URL;
 import static com.example.kalpak.football.utils.Constants.SEARCH_LEAGUE;
+import static com.example.kalpak.football.utils.Constants.SEARCH_PLAYER_NAME;
+import static com.example.kalpak.football.utils.Constants.SEARCH_TEAM_PLAYER;
 
 
 public class SearchActivity extends AppCompatActivity {
-    List<Team>sports=new ArrayList<>();
+    List<Team> sports = new ArrayList<>();
+    List<Player> players = new ArrayList<>();
+
     TeamListAdapter sportsAdapter;
+    PlayerListAdapter playerListAdapter;
     ActivitySearchBinding binding;
+    String search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_search);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
+        Intent intent = getIntent();
+        String query = intent.getStringExtra("query");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         binding.recycler.setLayoutManager(layoutManager);
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -52,17 +64,41 @@ public class SearchActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        sportsAdapter=new TeamListAdapter(sports,SearchActivity.this);
-        Intent intent=getIntent();
-        String query=intent.getStringExtra("query");
-        response(query);
-        binding.search.setQuery(query,true);
+
+
+        binding.search.setQuery(query, true);
+
+        if (Constants.SEARCH_FLAG == 1) {
+            search = SEARCH_LEAGUE;
+            binding.search.setQueryHint("Search Team");
+            sportsAdapter = new TeamListAdapter(sports, SearchActivity.this);
+            response(query);
+
+        } else {
+            binding.search.setQueryHint("Search by Team");
+            playerListAdapter = new PlayerListAdapter(players, SearchActivity.this);
+
+            if (Constants.SEARCH_FLAG == 2) {
+                search = SEARCH_TEAM_PLAYER;
+                response1(query);
+
+            } else {
+                search = SEARCH_PLAYER_NAME;
+                binding.search.setQueryHint("Search Player");
+                response1(query);
+            }
+
+        }
         binding.search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if (query != null) {
                     //call api
-                    response(query);
+                    if (Constants.SEARCH_FLAG == 2) {
+                        response(query);
+                    } else {
+                        response1(query);
+                    }
                 }
                 return false;
             }
@@ -70,29 +106,35 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 sports.clear();
-                response(newText);
+                players.clear();
+                if (Constants.SEARCH_FLAG == 1) {
+                    response(newText);
+                } else {
+                    response1(newText);
+                }
                 return false;
             }
         });
+
     }
 
     public void response(String query) {
 
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,BASE_URL+SEARCH_LEAGUE+query+"&s=Soccer", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, BASE_URL + SEARCH_LEAGUE + query + "&s=Soccer", null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
-                // TODO Auto-generated method stub
+
                 try {
-                    JSONArray array=response.getJSONArray("teams");
+                    JSONArray array = response.getJSONArray("teams");
 
 
                     Gson gson = new GsonBuilder().create();
 
-                    for(int i=0;i<array.length();i++){
+                    for (int i = 0; i < array.length(); i++) {
 
-                        sports.add(new Team(gson.fromJson(array.getJSONObject(i).toString(),Team.class)));
+                        sports.add(new Team(gson.fromJson(array.getJSONObject(i).toString(), Team.class)));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -103,7 +145,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
+
                 NetworkResponse response = error.networkResponse;
                 Toast.makeText(SearchActivity.this, "response: Error" +
                         response.statusCode, Toast.LENGTH_SHORT).show();
@@ -114,4 +156,43 @@ public class SearchActivity extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
 
     }
+
+    public void response1(String query) {
+
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, BASE_URL + search + query, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    JSONArray array = response.getJSONArray("player");
+
+
+                    Gson gson = new GsonBuilder().create();
+
+                    for (int i = 0; i < array.length(); i++) {
+
+                        players.add(new Player(gson.fromJson(array.getJSONObject(i).toString(), Player.class)));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                binding.recycler.setAdapter(playerListAdapter);
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                NetworkResponse response = error.networkResponse;
+                Toast.makeText(SearchActivity.this, "response: Error" +
+                        response.statusCode, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
+
+    }
+
 }

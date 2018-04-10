@@ -14,6 +14,7 @@ import com.example.kalpak.football.utils.Constants;
 
 public class SplashActivity extends AppCompatActivity implements LifecycleOwner {
     private LifecycleRegistry mLifecycleRegistry;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class SplashActivity extends AppCompatActivity implements LifecycleOwner 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }
         }, Constants.SPLASH_TIMER);

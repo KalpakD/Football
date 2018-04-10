@@ -19,7 +19,6 @@ import java.util.List;
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.BindingHolder> {
 
 
-
     private List<Events> events;
     private Context context;
 
@@ -55,10 +54,11 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.BindingHolde
         return events.size();
     }
 
-    public class BindingHolder extends RecyclerView.ViewHolder {
+    class BindingHolder extends RecyclerView.ViewHolder {
 
         ScoreRowBinding binding;
-        public BindingHolder(ScoreRowBinding binding) {
+
+        BindingHolder(ScoreRowBinding binding) {
             super(binding.scoreCard);
             this.binding = binding;
 

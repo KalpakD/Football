@@ -2,6 +2,7 @@ package com.example.kalpak.football.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -50,7 +51,7 @@ public class PastEventFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_past_event, container, false);
@@ -69,7 +70,7 @@ public class PastEventFragment extends Fragment {
 
             @Override
             public void onResponse(JSONObject response) {
-                // TODO Auto-generated method stub
+
                 try {
                     JSONArray array = response.getJSONArray("events");
                     Gson gson = new GsonBuilder().create();
@@ -90,7 +91,7 @@ public class PastEventFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
+
                 NetworkResponse response = error.networkResponse;
                 Toast.makeText(view.getContext(), "response: Error" +
                         response.statusCode, Toast.LENGTH_SHORT).show();

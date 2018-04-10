@@ -1,9 +1,8 @@
 package com.example.kalpak.football.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,15 +27,16 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.BindingHol
     }
 
 
+    @NonNull
     @Override
-    public EventsAdapter.BindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public EventsAdapter.BindingHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         EventsRowBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                 R.layout.events_row, parent, false);
         return new BindingHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(EventsAdapter.BindingHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EventsAdapter.BindingHolder holder, int position) {
         EventsRowBinding binding = holder.binding;
         binding.setEvent(new ViewEvents(context, events.get(position)));
         final Events eventsmodel = events.get(position);
@@ -44,9 +44,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.BindingHol
         binding.eventsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent=new Intent(v.getContext(), EventDetailActivity.class);
-//                intent.putExtra("model", (Parcelable) eventsmodel);
-//                v.getContext().startActivity(intent);
+
             }
         });
 
@@ -62,7 +60,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.BindingHol
         public EventsRowBinding binding;
 
 
-        public BindingHolder(EventsRowBinding binding) {
+        BindingHolder(EventsRowBinding binding) {
             super(binding.eventsCard);
             this.binding = binding;
 

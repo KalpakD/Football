@@ -6,27 +6,27 @@ import android.os.Parcelable;
 public class League implements Parcelable {
 
 
-    String idLeague;
-    String strCountry;
-    String strDescriptionEN;
-    String strBadge;
-    String strLeague;
-    String strLogo;
-    String strTrophy;
-    String strFanart1;
+    private String idLeague;
+    private String strCountry;
+    private String strDescriptionEN;
+    private String strBadge;
+    private String strLeague;
+    private String strLogo;
+    private String strTrophy;
+    private String strFanart1;
 
     public League(League league) {
-        this.idLeague=league.idLeague;
-        this.strBadge=league.strBadge;
-        this.strCountry=league.strCountry;
-        this.strDescriptionEN=league.strDescriptionEN;
-        this.strFanart1=league.strFanart1;
-        this.strLeague=league.strLeague;
-        this.strLogo=league.strLogo;
-        this.strTrophy=league.strTrophy;
+        this.idLeague = league.idLeague;
+        this.strBadge = league.strBadge;
+        this.strCountry = league.strCountry;
+        this.strDescriptionEN = league.strDescriptionEN;
+        this.strFanart1 = league.strFanart1;
+        this.strLeague = league.strLeague;
+        this.strLogo = league.strLogo;
+        this.strTrophy = league.strTrophy;
     }
 
-    protected League(Parcel in) {
+    private League(Parcel in) {
         idLeague = in.readString();
         strCountry = in.readString();
         strDescriptionEN = in.readString();
@@ -48,10 +48,6 @@ public class League implements Parcelable {
             return new League[size];
         }
     };
-
-    public League() {
-
-    }
 
     public String getIdLeague() {
         return idLeague;
@@ -85,37 +81,16 @@ public class League implements Parcelable {
         return strFanart1;
     }
 
-    public void setIdLeague(String idLeague) {
-        this.idLeague = idLeague;
-    }
-
-    public void setStrCountry(String strCountry) {
-        this.strCountry = strCountry;
-    }
 
     public void setStrDescriptionEN(String strDescriptionEN) {
         this.strDescriptionEN = strDescriptionEN;
     }
 
-    public void setStrBadge(String strBadge) {
-        this.strBadge = strBadge;
-    }
 
     public void setStrLeague(String strLeague) {
         this.strLeague = strLeague;
     }
 
-    public void setStrLogo(String strLogo) {
-        this.strLogo = strLogo;
-    }
-
-    public void setStrTrophy(String strTrophy) {
-        this.strTrophy = strTrophy;
-    }
-
-    public void setStrFanart1(String strFanart1) {
-        this.strFanart1 = strFanart1;
-    }
 
     @Override
     public int describeContents() {

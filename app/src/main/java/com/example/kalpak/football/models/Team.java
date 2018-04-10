@@ -4,36 +4,36 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Team implements Parcelable {
-    String idLeague;
-    String idTeam;
-    String strCountry;
-    String strDescriptionEN;
-    String strStadium;
-    String strStadiumDescription;
-    String strStadiumLocation;
-    String strStadiumThumb;
-    String strTeam;
-    String strTeamBadge;
-    String strTeamBanner;
-    String strTeamJersey;
-    String strTeamLogo;
-    String strManager;
+    private String idLeague;
+    private String idTeam;
+    private String strCountry;
+    private String strDescriptionEN;
+    private String strStadium;
+    private String strStadiumDescription;
+    private String strStadiumLocation;
+    private String strStadiumThumb;
+    private String strTeam;
+    private String strTeamBadge;
+    private String strTeamBanner;
+    private String strTeamJersey;
+    private String strTeamLogo;
+    private String strManager;
 
     public Team(Team team) {
-        this.idLeague=team.idLeague;
-        this.idTeam=team.idTeam;
-        this.strCountry=team.strCountry;
-        this.strDescriptionEN=team.strDescriptionEN;
-        this.strManager=team.strManager;
-        this.strStadium=team.strStadium;
-        this.strStadiumDescription=team.strStadiumDescription;
-        this.strStadiumLocation=team.strStadiumLocation;
-        this.strStadiumThumb=team.strStadiumThumb;
-        this.strTeam=team.strTeam;
-        this.strTeamBadge=team.strTeamBadge;
-        this.strTeamBanner=team.strTeamBanner;
-        this.strTeamJersey=team.strTeamJersey;
-        this.strTeamLogo=team.strTeamLogo;
+        this.idLeague = team.idLeague;
+        this.idTeam = team.idTeam;
+        this.strCountry = team.strCountry;
+        this.strDescriptionEN = team.strDescriptionEN;
+        this.strManager = team.strManager;
+        this.strStadium = team.strStadium;
+        this.strStadiumDescription = team.strStadiumDescription;
+        this.strStadiumLocation = team.strStadiumLocation;
+        this.strStadiumThumb = team.strStadiumThumb;
+        this.strTeam = team.strTeam;
+        this.strTeamBadge = team.strTeamBadge;
+        this.strTeamBanner = team.strTeamBanner;
+        this.strTeamJersey = team.strTeamJersey;
+        this.strTeamLogo = team.strTeamLogo;
     }
 
     protected Team(Parcel in) {
@@ -121,60 +121,9 @@ public class Team implements Parcelable {
         return strManager;
     }
 
-    public void setIdLeague(String idLeague) {
-        this.idLeague = idLeague;
-    }
-
-    public void setIdTeam(String idTeam) {
-        this.idTeam = idTeam;
-    }
-
-    public void setStrCountry(String strCountry) {
-        this.strCountry = strCountry;
-    }
 
     public void setStrDescriptionEN(String strDescriptionEN) {
         this.strDescriptionEN = strDescriptionEN;
-    }
-
-    public void setStrStadium(String strStadium) {
-        this.strStadium = strStadium;
-    }
-
-    public void setStrStadiumDescription(String strStadiumDescription) {
-        this.strStadiumDescription = strStadiumDescription;
-    }
-
-    public void setStrStadiumLocation(String strStadiumLocation) {
-        this.strStadiumLocation = strStadiumLocation;
-    }
-
-    public void setStrStadiumThumb(String strStadiumThumb) {
-        this.strStadiumThumb = strStadiumThumb;
-    }
-
-    public void setStrTeam(String strTeam) {
-        this.strTeam = strTeam;
-    }
-
-    public void setStrTeamBadge(String strTeamBadge) {
-        this.strTeamBadge = strTeamBadge;
-    }
-
-    public void setStrTeamBanner(String strTeamBanner) {
-        this.strTeamBanner = strTeamBanner;
-    }
-
-    public void setStrTeamJersey(String strTeamJersey) {
-        this.strTeamJersey = strTeamJersey;
-    }
-
-    public void setStrTeamLogo(String strTeamLogo) {
-        this.strTeamLogo = strTeamLogo;
-    }
-
-    public void setStrManager(String strManager) {
-        this.strManager = strManager;
     }
 
     @Override

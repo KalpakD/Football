@@ -28,4 +28,5 @@
     <string name="title_activity_team_detail">TeamDetailActivity</string>
 
     <string name="title_activity_player_detail">PlayerDetailActivity</string>
+    <string name="content">content</string>
 </resources>

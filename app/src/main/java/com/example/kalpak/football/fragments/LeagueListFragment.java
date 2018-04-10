@@ -2,6 +2,7 @@ package com.example.kalpak.football.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +31,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.kalpak.football.utils.Constants.ALL_SPORTS;
 import static com.example.kalpak.football.utils.Constants.BASE_URL;
 import static com.example.kalpak.football.utils.Constants.SPORT_LEAGUE;
 
@@ -40,42 +40,44 @@ import static com.example.kalpak.football.utils.Constants.SPORT_LEAGUE;
 public class LeagueListFragment extends Fragment {
 
     FragmentLeagueListBinding binding;
-    List<League> sports=new ArrayList<>();
+    List<League> sports = new ArrayList<>();
     LeagueListAdapter sportsAdapter;
+
     public LeagueListFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_league_list, container, false);
-        binding=FragmentLeagueListBinding.bind(view);
+        View view = inflater.inflate(R.layout.fragment_league_list, container, false);
+        binding = FragmentLeagueListBinding.bind(view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         binding.leagueList.setLayoutManager(layoutManager);
-          response(view);
-        sportsAdapter=new LeagueListAdapter(sports,view.getContext());
+        response(view);
+        sportsAdapter = new LeagueListAdapter(sports, view.getContext());
         return view;
     }
+
     public void response(final View view) {
 
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,BASE_URL+SPORT_LEAGUE, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, BASE_URL + SPORT_LEAGUE, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
-                // TODO Auto-generated method stub
+
                 try {
-                    JSONArray array=response.getJSONArray("countrys");
+                    JSONArray array = response.getJSONArray("countrys");
 
 
                     Gson gson = new GsonBuilder().create();
 
-                    for(int i=0;i<array.length();i++){
+                    for (int i = 0; i < array.length(); i++) {
 
-                        sports.add(new League(gson.fromJson(array.getJSONObject(i).toString(),League.class)));
+                        sports.add(new League(gson.fromJson(array.getJSONObject(i).toString(), League.class)));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -86,7 +88,7 @@ public class LeagueListFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
+
                 NetworkResponse response = error.networkResponse;
                 Toast.makeText(view.getContext(), "response: Error" +
                         response.statusCode, Toast.LENGTH_SHORT).show();

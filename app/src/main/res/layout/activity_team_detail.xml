@@ -39,27 +39,6 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-
-                    <TextView
-                        android:id="@+id/fullscreen_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:keepScreenOn="true"
-                        android:text="@{tdetail.strTeam}"
-                        android:textColor="#33b5e5"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:gravity="left"
-                        android:text="@{tdetail.strDescriptionEN}"
-                        android:textColor="@color/color_white" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -69,6 +48,16 @@
                             android:layout_height="100dp"
                             android:layout_margin="8dp"
                             app:teamlogo="@{tdetail.strTeamBadge}"/>
+                        <TextView
+                            android:id="@+id/fullscreen_content"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:keepScreenOn="true"
+                            android:text="@{tdetail.strTeam}"
+                            android:textColor="#33b5e5"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -76,20 +65,25 @@
                             android:layout_margin="8dp"/>
 
                     </LinearLayout>
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:gravity="left"
+                        android:text="@{tdetail.strDescriptionEN}"
+                        android:textColor="@color/color_white" />
+
+
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/black_overlay"
-            app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
-
-
-            />
-
+<include
+    android:id="@+id/header1"
+    layout="@layout/toolbar2"
+    />
     </FrameLayout>
 </layout>

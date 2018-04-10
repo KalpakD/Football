@@ -1,15 +1,9 @@
 package com.example.kalpak.football.utils;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import java.text.DateFormat;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -36,8 +30,8 @@ public class DateTime {
         return dateFormat.format(cal.getTime());
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public  String convertTime(String time) {
+
+    public String convertTime(String time) {
 
         String converted_date = "";
         try {
@@ -58,7 +52,7 @@ public class DateTime {
         return converted_date;
     }
 
-    public String getCurrentTimeZone() {
+    private String getCurrentTimeZone() {
         TimeZone tz = Calendar.getInstance().getTimeZone();
         System.out.println(tz.getDisplayName());
         return tz.getID();

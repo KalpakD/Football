@@ -10,21 +10,21 @@ import com.example.kalpak.football.utils.DateTime;
 public class Events implements Parcelable {
 
 
-    String idEvent;
-    String strEvent;
-    String strHomeTeam;
-    String strAwayTeam;
-    String dateEvent;
-    String strTime;
-    String idHomeTeam;
-    String idAwayTeam;
-    String strLeague;
-    String intHomeScore;
-    String intAwayScore;
-    String idLeague;
+    private String idEvent;
+    private String strEvent;
+    private String strHomeTeam;
+    private String strAwayTeam;
+    private String dateEvent;
+    private String strTime;
+    private String idHomeTeam;
+    private String idAwayTeam;
+    private String strLeague;
+    private String intHomeScore;
+    private String intAwayScore;
+    private String idLeague;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public Events(Events events) {
         this.idEvent = events.getIdEvent();
         this.strEvent = events.getStrEvent();
@@ -41,7 +41,7 @@ public class Events implements Parcelable {
     }
 
 
-    protected Events(Parcel in) {
+    private Events(Parcel in) {
         idEvent = in.readString();
         strEvent = in.readString();
         strHomeTeam = in.readString();
@@ -132,7 +132,7 @@ public class Events implements Parcelable {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public String getStrTime() {
         return  new DateTime().convertTime(strTime);
     }

@@ -11,11 +11,10 @@ import com.example.kalpak.football.models.League;
 
 public class ViewLeague extends BaseObservable {
 
-    Context context;
-    League league;
+    private League league;
 
     public ViewLeague(Context context, League league) {
-        this.context = context;
+        Context context1 = context;
         this.league = league;
     }
     @Bindable

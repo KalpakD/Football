@@ -1,5 +1,6 @@
 package com.example.kalpak.football.activities;
 
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -27,6 +28,8 @@ import com.example.kalpak.football.utils.Constants;
 import com.example.kalpak.football.utils.NetworkChangeReceiver;
 import com.example.kalpak.football.utils.NetworkUtil;
 
+import java.util.Objects;
+
 import static com.example.kalpak.football.utils.Constants.CONNECTIVITY_ACTION;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
     MenuItem menuItem;
     IntentFilter intentFilter;
     NetworkChangeReceiver receiver;
-//    private static TextView log_network;
-    private static String log_str;
 
     @Override
     protected void onResume() {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
 
         @SuppressLint("ResourceAsColor")
         @Override
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             if (fragment != null) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 setSupportActionBar(binding.included.toolbar);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
                 getSupportActionBar().setHomeButtonEnabled(false);
                 getSupportActionBar().setTitle("");
                 fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
@@ -115,17 +117,17 @@ public class MainActivity extends AppCompatActivity {
             final MenuItem myActionMenuItem = menu.findItem( R.id.menu_search);
             final SearchView searchView = (SearchView) myActionMenuItem.getActionView();
             searchView.setQueryHint("Team Name");
-            final SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+            final SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
 
 
-            ArrayAdapter<String> newsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Constants.dataArr);
+            ArrayAdapter<String> newsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, Constants.dataArr);
             searchAutoComplete.setAdapter(newsAdapter);
 
             searchAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int itemIndex, long id) {
                     String queryString=(String)adapterView.getItemAtPosition(itemIndex);
-                    searchAutoComplete.setText("" + queryString);
+                    searchAutoComplete.setText(String.format("%s", queryString));
 
 
                 }
