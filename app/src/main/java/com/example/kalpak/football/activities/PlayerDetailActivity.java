@@ -56,7 +56,7 @@ public class PlayerDetailActivity extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         }
     };
-    private View mControlsView;
+
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
@@ -65,7 +65,7 @@ public class PlayerDetailActivity extends AppCompatActivity {
             if (actionBar != null) {
                 actionBar.show();
             }
-            mControlsView.setVisibility(View.VISIBLE);
+
         }
     };
     private boolean mVisible;
@@ -95,11 +95,21 @@ public class PlayerDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent =getIntent();
         Player player = intent.getParcelableExtra("player_detail");
+
         ActivityPlayerDetailBinding binding= DataBindingUtil.setContentView(this,R.layout.activity_player_detail);
         binding.setPdetail(new ViewPlayer(this,new Player(player)));
+
         mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+        mContentView = findViewById(R.id.playercontainer);
+        binding.header3.toolbar.setTitle(player.getStrPlayer());
+        binding.header3.toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
+        setSupportActionBar(binding.header3.toolbar);
+        binding.header3.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -113,7 +123,7 @@ public class PlayerDetailActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        binding.header3.toolbar.setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override
@@ -140,7 +150,6 @@ public class PlayerDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-        mControlsView.setVisibility(View.GONE);
         mVisible = false;
 
         // Schedule a runnable to remove the status and navigation bar after a delay
