@@ -60,19 +60,19 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     binding.included.toolbar.setTitleTextColor(R.color.color_white);
                     binding.included.toolbarTitle.setText(R.string.leagues);
-
+                    Constants.SEARCH_FLAG=1;
                     fragment = new LeagueListFragment();
                     break;
                 case R.id.navigation_dashboard:
                     binding.included.toolbar.setTitleTextColor(R.color.color_white);
                     binding.included.toolbarTitle.setText(R.string.events_today);
-
+                    Constants.SEARCH_FLAG=2;
                     fragment = new EventsTodayFragment();
                     break;
                 case R.id.navigation_notifications:
                     binding.included.toolbar.setTitleTextColor(R.color.color_white);
                     binding.included.toolbarTitle.setText(R.string.past_events);
-
+                    Constants.SEARCH_FLAG=3;
                     fragment = new PastEventFragment();
                     break;
             }
