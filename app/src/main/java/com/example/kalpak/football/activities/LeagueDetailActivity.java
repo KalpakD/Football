@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -56,7 +57,7 @@ public class LeagueDetailActivity extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         }
     };
-    private View mControlsView;
+
     private final Runnable mShowPart2Runnable = new Runnable() {
         @Override
         public void run() {
@@ -65,7 +66,7 @@ public class LeagueDetailActivity extends AppCompatActivity {
             if (actionBar != null) {
                 actionBar.show();
             }
-            mControlsView.setVisibility(View.VISIBLE);
+
         }
     };
     private boolean mVisible;
@@ -97,12 +98,21 @@ public class LeagueDetailActivity extends AppCompatActivity {
         final League league=intent.getParcelableExtra("League_detail");
         ActivityLeagueDetailBinding binding= DataBindingUtil.setContentView(this,R.layout.activity_league_detail);
         binding.setLdetail(new ViewLeague(this,new League(league)));
-//        setContentView(R.layout.activity_league_detail);
+
 
         mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
 
+        mContentView = findViewById(R.id.leagcontainer);
+
+        binding.header2.toolbar.setTitle(league.getStrLeague());
+        binding.header2.toolbar.setTitleTextColor(getResources().getColor(R.color.color_white));
+        setSupportActionBar(binding.header2.toolbar);
+        binding.header2.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +125,7 @@ public class LeagueDetailActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        binding.header2.toolbar.setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override
@@ -142,7 +152,7 @@ public class LeagueDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-        mControlsView.setVisibility(View.GONE);
+
         mVisible = false;
 
         // Schedule a runnable to remove the status and navigation bar after a delay
