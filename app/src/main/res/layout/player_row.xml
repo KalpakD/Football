@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:foreground="@drawable/custom_bg"
         app:cardCornerRadius="3dp"
         app:cardElevation="5dp">
 
@@ -35,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
                 android:layout_weight="0.3"
                 >
 
@@ -43,18 +44,14 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:hint="name"
+                    android:hint="@string/name1"
                     android:text="@{player.strPlayer}"
                     android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/textView"
-                    android:layout_centerVertical="true"
-                    android:hint="position"
+                    android:hint="@string/position"
                     android:text="@{player.strPosition}" />
             </LinearLayout>
         </LinearLayout>

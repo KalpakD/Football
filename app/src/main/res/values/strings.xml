@@ -29,4 +29,15 @@
 
     <string name="title_activity_player_detail">PlayerDetailActivity</string>
     <string name="content">content</string>
+    <string name="soccer_leagues">Soccer Leagues</string>
+    <string name="name">Team A</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="vs">VS</string>
+
+    <string name="country">country</string>
+    <string name="name1">name</string>
+    <string name="position">position</string>
+    <string name="symbol">:</string>
+    <string name="team_b">Team B</string>
 </resources>

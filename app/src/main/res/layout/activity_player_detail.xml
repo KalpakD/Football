@@ -37,7 +37,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -74,7 +74,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:gravity="left"
+                        android:gravity="start"
                         android:text="@{pdetail.strDescriptionEN}"
                         android:textColor="@color/color_white" />
 

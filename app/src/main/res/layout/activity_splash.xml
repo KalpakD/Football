@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Soccer Leagues"
+            android:text="@string/soccer_leagues"
             android:textColor="@color/colorLight"
             android:gravity="center"
             android:textStyle="bold"

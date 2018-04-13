@@ -14,7 +14,7 @@
         android:id="@+id/leagcontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0099cc"
+        android:background="@color/detailbg"
         tools:context=".activities.LeagueDetailActivity">
 
         <LinearLayout
@@ -22,67 +22,67 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/stadium"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:logo="@{ldetail.strFanart1}" />
-        <!-- The primary full-screen view. This can be replaced with whatever view
-             is needed to present your content, e.g. VideoView, SurfaceView,
-             TextureView, etc. -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/stadium"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:logo="@{ldetail.strFanart1}" />
+            <!-- The primary full-screen view. This can be replaced with whatever view
+                 is needed to present your content, e.g. VideoView, SurfaceView,
+                 TextureView, etc. -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="8dp"
-            app:logo="@{ldetail.strBadge}" />
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_margin="8dp"
+                            app:logo="@{ldetail.strBadge}" />
 
-        <TextView
-            android:id="@+id/fullscreen_content"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:hint="@string/content"
-            android:keepScreenOn="true"
-            android:text="@{ldetail.strLeague}"
-            android:textColor="#33b5e5"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/fullscreen_content"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="@string/content"
+                            android:keepScreenOn="true"
+                            android:text="@{ldetail.strLeague}"
+                            android:textColor="#33b5e5"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="90dp"
-            app:logo="@{ldetail.strTrophy}"
-            android:layout_margin="8dp"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="left"
-            android:text="@{ldetail.strDescriptionEN}"
-            android:textColor="@color/color_white" />
-        </LinearLayout>
-        </ScrollView>
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="90dp"
+                            android:layout_margin="8dp"
+                            app:logo="@{ldetail.strTrophy}" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:gravity="start"
+                        android:text="@{ldetail.strDescriptionEN}"
+                        android:textColor="@color/color_white" />
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
         <include
             android:id="@+id/header2"
-            layout="@layout/toolbar2"
-            />
-        </FrameLayout>
+            layout="@layout/toolbar2" />
+    </FrameLayout>
 
 </layout>

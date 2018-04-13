@@ -13,6 +13,7 @@
         android:id="@+id/teamlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:foreground="@drawable/custom_bg"
         android:layout_margin="4dp"
         app:cardCornerRadius="3dp"
         app:cardElevation="5dp">

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.kalpak.football.activities.SearchActivity">
-<data/>
+
+    <data />
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
@@ -19,25 +21,24 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorPrimary"
                 app:navigationIcon="?attr/homeAsUpIndicator"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                >
+                app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <SearchView
                     android:id="@+id/search"
                     android:layout_width="250dp"
                     android:layout_height="40dp"
-                    android:defaultFocusHighlightEnabled="true"
-                    android:iconifiedByDefault="false"
+
                     android:background="@drawable/rounded_button"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Team"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
 
-                    android:queryHint="Team"
+                    app:layout_constraintTop_toTopOf="parent"
 
                     />
             </android.support.v7.widget.Toolbar>
