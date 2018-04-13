@@ -23,6 +23,7 @@ import com.example.kalpak.football.R;
 import com.example.kalpak.football.databinding.ActivityMainBinding;
 import com.example.kalpak.football.fragments.EventsTodayFragment;
 import com.example.kalpak.football.fragments.LeagueListFragment;
+import com.example.kalpak.football.fragments.NewsFragment;
 import com.example.kalpak.football.fragments.PastEventFragment;
 import com.example.kalpak.football.utils.Constants;
 import com.example.kalpak.football.utils.NetworkChangeReceiver;
@@ -76,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
                     binding.included.toolbarTitle.setText(R.string.past_events);
                     Constants.SEARCH_FLAG=3;
                     fragment = new PastEventFragment();
+                    break;
+                case R.id.navigation_news:
+                    binding.included.toolbar.setTitleTextColor(R.color.color_white);
+                    binding.included.toolbarTitle.setText(R.string.news);
+                    Constants.SEARCH_FLAG = 4;
+                    fragment = new NewsFragment();
                     break;
             }
             if (fragment != null) {
